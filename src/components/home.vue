@@ -49,7 +49,7 @@
               <i class="el-icon-tickets"></i>
               <span>订单</span>
             </template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="/orderList">订单列表</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
             <el-menu-item index="1-3">选项3</el-menu-item>
           </el-submenu>
