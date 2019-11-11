@@ -4,6 +4,7 @@ import home from '@/components/home'
 import GoodsList from '@/components/goods/goodslist'
 import Shop from '@/components/goods/shop'
 import orderList from '@/components/order/order-list'
+import inventoryLogList from '@/components/inventoryLog/inventoryLog-list'
 Vue.use(Router)
 
 export default new Router({
@@ -18,16 +19,18 @@ export default new Router({
           path:'/list',
           name:'GoodsList',
           component:GoodsList
-        },
-        {
+        },{
           path: '/shop',
           name: 'Shop',
           component: Shop
-        },
-        {
+        },{
           path: '/orderList',
           name: 'OrderList',
           component: orderList
+        },{
+          path: '/inventoryLogList',
+          name: 'InventoryLogList',
+          component: inventoryLogList
         }
       ]
     }

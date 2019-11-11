@@ -51,7 +51,7 @@
             </template>
             <el-menu-item index="/orderList">订单列表</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
-            <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item index="/inventoryLogList">商品库存日志</el-menu-item>
           </el-submenu>
           <el-submenu index="5">
             <template slot="title">
