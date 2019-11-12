@@ -8,3 +8,10 @@ export const page= (data) =>{
     method:'post'
   })
 }
+
+export const findType= () =>{
+  return axios.request({
+    url:'/api/inventoryLog/findType',
+    method:'get'
+  })
+}

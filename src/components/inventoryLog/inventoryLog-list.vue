@@ -9,22 +9,22 @@
         <Tabs type="card">
           <TabPane label="商品库存日志">
             <div class="input-header">
-              <Input class="input" v-model="inventoryLog.goodsName" placeholder="商品名称" />
-              <Input class="input" v-model="inventoryLog.orderNumber" placeholder="订单号" />
-              <DatePicker type="date" placeholder="开始时间"></DatePicker>
-              <DatePicker type="date" placeholder="结束时间"></DatePicker>
+              <Input class="input" v-model="commodityName" placeholder="商品名称" />
+              <Input class="input" v-model="orderNumber" placeholder="订单号" />
+              <DatePicker type="date" v-model="startDateTime" placeholder="开始时间"></DatePicker>
+              <DatePicker type="date" v-model="endDateTime" placeholder="结束时间"></DatePicker>
               <br/>
               <br/>
-              <Select class="select" v-model="model1" style="width:200px">
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              <Select class="select" v-model="model1">
+                <Option v-for="item in dataList" :value="item.value" :key="item.key">{{ item.value }}</Option>
               </Select>
-              <Select class="select" v-model="model1" style="width:200px">
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              <Select class="select" v-model="model2">
+                <Option v-for="item in dataList" :value="item.value" :key="item.key">{{ item.value }}</Option>
               </Select>
-              <Select class="select" v-model="model1" style="width:200px">
-                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              <Select class="select" v-model="model3">
+                <Option v-for="item in dataList" :value="item.value" :key="item.key">{{ item.value }}</Option>
               </Select>
-              <Button type="primary">搜索</Button>
+              <Button type="primary" @click="getData">搜索</Button>
             </div>
             <Table height="600" :columns="columns" :data="tableData"></Table>
             <Page class="paging" @on-change="currentPageNo" @on-page-size-change="switchPageSize" :current="pageNo" :page-size="pageSize"  :total="total" show-sizer show-elevator show-total />
@@ -36,26 +36,22 @@
 </template>
 
 <script>
-  import {page} from "@/api/inventoryLog";
+  import {page,findType} from "@/api/inventoryLog";
   export default {
     data () {
       return {
-        sercha:"",
         tableData:[],
         total:0,
         pageNo:1,
         pageSize:10,
-        inventoryLog:{
-          goodsName:"",
-          orderNumber:"",
-        },
-        cityList: [
-          {
-            value: '请选择...',
-            label: '请选择...'
-          }
-        ],
+        commodityName:"",
+        orderNumber:"",
+        endDateTime:"",
+        startDateTime:"",
+        dataList: [],
         model1: '',
+        model2: '',
+        model3: '',
         columns: [
           {
             type:"selection",
@@ -99,13 +95,27 @@
     methods:{
       //获取数据
       getData : function(){
+        if(this.endDateTime != ""){
+          this.endDateTime = this.formatDate(new Date(this.endDateTime),"yyyy-MM-dd")
+        }
+        if(this.startDateTime != ""){
+          this.startDateTime = this.formatDate(new Date(this.startDateTime),"yyyy-MM-dd")
+        }
         page({
-          search:this.sercha,
+          orderNumber:this.orderNumber,
+          commodityName:this.commodityName,
+          endDateTime:this.endDateTime,
+          startDateTime:this.startDateTime,
           pageNo:this.pageNo,
           pageSize:this.pageSize
         }).then(req =>{
           this.tableData = req.data.list;
           this.total = req.data.total;
+        })
+      },
+      initData : function(){
+        findType({}).then(req =>{
+          this.dataList = req.data;
         })
       },
       currentPageNo : function(pageNo){
@@ -139,6 +149,7 @@
     },
     mounted:function () {
       this.getData();
+      this.initData();
     }
   }
 </script>
