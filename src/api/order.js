@@ -1,10 +1,10 @@
 import axios from "axios";
+var qs = require('querystring')
 
-export const findPage= ({search,pageNo,pageSize}) =>{
-  const data = search || {}
+export const findPage= (data) =>{
   return axios.request({
     url:'findOrder',
-    data:data,
+    data:qs.stringify(data),
     method:'post'
   })
 }
