@@ -50,13 +50,13 @@
               <span>订单</span>
             </template>
             <el-menu-item index="/orderList">订单列表</el-menu-item>
-            <el-menu-item index="1-2">缺货登记</el-menu-item>
-             <el-menu-item index="1-2">发货单列表</el-menu-item>
-             <el-menu-item index="1-2">退货单列表</el-menu-item>
+            <el-menu-item index="/orderOutOfStock">缺货登记</el-menu-item>
+             <el-menu-item index="/orderInvoice">发货单列表</el-menu-item>
+             <el-menu-item index="/orderReturnGoods">退货单列表</el-menu-item>
              <el-menu-item index="1-2">投诉管理</el-menu-item>
-             <el-menu-item index="1-2">延迟收货</el-menu-item>
-             <el-menu-item index="1-2">检测已发货订单</el-menu-item>
-             <el-menu-item index="1-2">单品退货单列表</el-menu-item>
+             <el-menu-item index="/orderDelayInReceiving">延迟收货</el-menu-item>
+             <el-menu-item index="/orderTestShipped">检测已发货订单</el-menu-item>
+             <el-menu-item index="/orderOneReturnGoods">单品退货单列表</el-menu-item>
             <el-menu-item index="/inventoryLogList">商品库存日志</el-menu-item>
           </el-submenu>
           <el-submenu index="5">

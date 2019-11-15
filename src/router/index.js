@@ -4,6 +4,12 @@ import home from '@/components/home'
 import GoodsList from '@/components/goods/goodslist'
 import Shop from '@/components/goods/shop'
 import orderList from '@/components/order/order-list'
+import orderOneReturnGoods from '@/components/order/order-one-return-goods'
+import orderOutOfStock from '@/components/order/order-out-of-stock'
+import orderInvoice from '@/components/order/order-invoice'
+import orderReturnGoods from '@/components/order/order-return-goods'
+import orderDelayInReceiving from '@/components/order/order-delay-in-receiving'
+import orderTestShipped from '@/components/order/order-test-shipped'
 import inventoryLogList from '@/components/inventoryLog/inventoryLog-list'
 Vue.use(Router)
 
@@ -27,6 +33,30 @@ export default new Router({
           path: '/orderList',
           name: 'OrderList',
           component: orderList
+        },{
+          path: '/orderOutOfStock',
+          name: 'OrderOutOfStock',
+          component: orderOutOfStock
+        },{
+          path: '/orderReturnGoods',
+          name: 'OrderReturnGoods',
+          component: orderReturnGoods
+        },{
+          path: '/orderOneReturnGoods',
+          name: 'OrderOneReturnGoods',
+          component: orderOneReturnGoods
+        },{
+          path: '/orderInvoice',
+          name: 'OrderInvoice',
+          component: orderInvoice
+        },{
+          path: '/orderDelayInReceiving',
+            name: 'OrderDelayInReceiving',
+          component: orderDelayInReceiving
+        },{
+          path: '/orderTestShipped',
+          name: 'OrderTestShipped',
+          component: orderTestShipped
         },{
           path: '/inventoryLogList',
           name: 'InventoryLogList',
