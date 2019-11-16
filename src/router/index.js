@@ -5,6 +5,8 @@ import GoodsList from '@/components/goods/goodslist'
 import Shop from '@/components/goods/shop'
 import orderList from '@/components/order/order-list'
 import inventoryLogList from '@/components/inventoryLog/inventoryLog-list'
+import complaint from '@/components/complaint/complaint'
+
 Vue.use(Router)
 
 export default new Router({
@@ -31,6 +33,10 @@ export default new Router({
           path: '/inventoryLogList',
           name: 'InventoryLogList',
           component: inventoryLogList
+        },{
+          path: '/complaint',
+          name: 'complaint',
+          component: complaint
         }
       ]
     }

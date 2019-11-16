@@ -53,7 +53,7 @@
             <el-menu-item index="1-2">缺货登记</el-menu-item>
              <el-menu-item index="1-2">发货单列表</el-menu-item>
              <el-menu-item index="1-2">退货单列表</el-menu-item>
-             <el-menu-item index="1-2">投诉管理</el-menu-item>
+             <el-menu-item index="/complaint">投诉管理</el-menu-item>
              <el-menu-item index="1-2">延迟收货</el-menu-item>
              <el-menu-item index="1-2">检测已发货订单</el-menu-item>
              <el-menu-item index="1-2">单品退货单列表</el-menu-item>
