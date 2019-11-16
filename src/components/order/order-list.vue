@@ -55,7 +55,104 @@
 
           </TabPane>
           <TabPane label="订单查询">
-            订单查询订单查询订单查询订单查询订单查询订单查询订单查询订单查询订单查询订单查询订单查询订单查询
+            <Row>
+              <Col span="3">订单号：</Col>
+              <Col span="8">    <Input v-model="value" style="width: 300px" /></Col>
+              <Col span="3">电子邮箱：</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">购货人：</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+              <Col span="3">收货人：</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+            </Row><br/>
+            <Row>
+              <Col span="3">发货地址:</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+              <Col span="3">邮政编码:</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+            </Row><br/>
+            <Row>
+              <Col span="3">电话号码:</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+              <Col span="3">手机号码:</Col>
+              <Col span="8"> <Input v-model="value" style="width: 300px" /></Col>
+            </Row><br/>
+            <Row>
+              <Col span="3">下单时间:</Col>
+              <Col span="4">             <DatePicker type="date"  style="width: 200px"></DatePicker></Col>
+              <Col span="1">~</Col>
+              <Col span="8">             <DatePicker type="date"  style="width: 200px"></DatePicker></Col>
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">确认收货时间:</Col>
+              <Col span="4">             <DatePicker type="date" style="width: 200px"></DatePicker></Col>
+              <Col span="1">~</Col>
+              <Col span="16">             <DatePicker type="date"  style="width: 200px"></DatePicker></Col>
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">所在地区:</Col>
+              <Col span="4"> <Cascader :data="data" v-model="value1"></Cascader></Col>
+
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">配送方式:</Col>
+              <Col span="4">            <Select v-model="model1" style="width:200px">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select></Col>
+
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">支付方式:</Col>
+              <Col span="4">            <Select v-model="model1" style="width:200px">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select></Col>
+
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">订单分类:</Col>
+              <Col span="4">            <Select v-model="model1" style="width:200px">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select></Col>
+
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">订单分类:</Col>
+              <Col span="4">            <Select v-model="model1" style="width:200px">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select></Col>
+
+            </Row> <br/>
+            <Row>
+              <Col span="3">付款状态:</Col>
+              <Col span="4">            <Select v-model="model1" style="width:200px">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select></Col>
+
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3">发货状态:</Col>
+              <Col span="4">            <Select v-model="model1" style="width:200px">
+                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+              </Select></Col>
+
+            </Row>
+            <br/>
+            <Row>
+              <Col span="3"> - </Col>
+              <Col span="4">    <Button type="primary">搜索</Button>
+                <Button>重置</Button></Col>
+
+            </Row>
           </TabPane>
         </Tabs>
       </Card>
@@ -73,6 +170,53 @@
             label: '请选择...'
           }
         ],
+          data: [{
+              value: 'beijing',
+              label: '北京',
+              children: [
+                  {
+                      value: 'gugong',
+                      label: '故宫'
+                  },
+                  {
+                      value: 'tiantan',
+                      label: '天坛'
+                  },
+                  {
+                      value: 'wangfujing',
+                      label: '王府井'
+                  }
+              ]
+          }, {
+              value: 'jiangsu',
+              label: '江苏',
+              children: [
+                  {
+                      value: 'nanjing',
+                      label: '南京',
+                      children: [
+                          {
+                              value: 'fuzimiao',
+                              label: '夫子庙',
+                          }
+                      ]
+                  },
+                  {
+                      value: 'suzhou',
+                      label: '苏州',
+                      children: [
+                          {
+                              value: 'zhuozhengyuan',
+                              label: '拙政园',
+                          },
+                          {
+                              value: 'shizilin',
+                              label: '狮子林',
+                          }
+                      ]
+                  }
+              ],
+          }],
         model1: '',
         columns1: [
           {
