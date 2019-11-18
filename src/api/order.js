@@ -8,3 +8,13 @@ export const findPage= (data) =>{
     method:'post'
   })
 }
+
+
+export const orderAddressFind= (data) =>{
+  return axios.request({
+    url:'/api/orderAddress/find',
+    data:qs.stringify(data),
+    method:'post'
+  })
+}
+

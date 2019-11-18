@@ -65,7 +65,7 @@ export default new Router({
           component: inventoryLogList
         },{
           path: '/complaint',
-          name: 'complaint',
+          name: 'Complaint',
           component: complaint
         }
       ]

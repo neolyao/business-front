@@ -9,9 +9,10 @@ export const page= (data) =>{
   })
 }
 
-export const findType= () =>{
+export const deletes= (data) =>{
   return axios.request({
-    url:'/api/inventoryLog/findType',
-    method:'get'
+    url:'/api/inventoryLog/deletes',
+    data:qs.stringify(data),
+    method:'post'
   })
 }
