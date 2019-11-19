@@ -11,11 +11,15 @@
             <Select class="select" v-model="complain.complaintStatus">
               <Option v-for="item in dataList" :value="item.key" la :key="item.key">{{ item.value }}</Option>
             </Select>
-            <Input v-model="complain.orderSequence" placeholder="会员名称/订单编号" style="width: 250px" />
-            <Button type="primary" @click="getData">搜索</Button>
+            <div class="search">
+              <Input v-model="complain.orderSequence" class="input" placeholder="会员名称/订单编号">
+                <Button slot="append" @click="getData" icon="ios-search"></Button>
+              </Input>
+            </div>
           </div>
 
-            <Table height="520" :columns="columns" :data="tableData"></Table>
+          <Table height="520" :columns="columns" :data="tableData"></Table>
+          <Modal v-model="modalInfo" title="删除投诉" @on-ok="deleteButton">确认要删除吗？</Modal>
         </div>
         <Page class="paging" @on-change="currentPageNo" @on-page-size-change="switchPageSize" :current="pageNo" :page-size="pageSize"  :total="total" show-sizer show-elevator show-total />
       </TabPane>
@@ -26,11 +30,13 @@
 </template>
 
 <script>
-  import {page} from "@/api/complaint";
+  import {page,deletes} from "@/api/complaint";
     export default {
         data () {
             return {
+                modalInfo:false,
                 tableData:[],
+                deleteId:"",
                 total:0,
                 pageNo:1,
                 pageSize:10,
@@ -58,7 +64,7 @@
                   }
                 ],
                 columns: [
-                  {
+                    {
                         title: '编号',
                         key: 'complainSequence',
                         width:100,
@@ -71,7 +77,7 @@
                         key: 'userId'
                     },{
                         title: '投诉类型',
-                        key: 'complainType'
+                        key: 'complaintType'
                     },{
                         title: '投诉内容',
                         key: 'complaintContent'
@@ -79,12 +85,41 @@
                         title: '投诉图片',
                         key: 'complaintImage',
                         width:100,
+                        render:(h,params) => {
+                          return h('img',{
+                            attrs:{
+                              src:params.row.complaintImage
+                            },
+                            style:{
+                              width:'40px',
+                              height:'40px',
+                              cursor:'pointer',
+                            }
+                          })
+                        }
                     },{
                         title: '投诉状态',
                         key: 'complaintStatus'
                     },{
                         title: '操作',
-                        key: 'operation'
+                        key: 'complainId',
+                        render: (h, params) => {
+                          return h('div', [
+                            h('Button', {
+                              props: {
+                                type: 'error',
+                                size: 'small',
+                                icon:'ios-trash-outline'
+                              },
+                              on: {
+                                click: () => {
+                                  this.modalInfo = true;
+                                  this.deleteId = params.row.complainId;
+                                }
+                              }
+                            }, '删除')
+                          ]);
+                        }
                     }
                 ]
             }
@@ -109,6 +144,16 @@
           switchPageSize : function(pageSize){
             this.pageSize = pageSize;
             this.getData();
+          },
+          deleteButton : function(){
+            deletes({id:this.deleteId}).then(req =>{
+              if(req.data){
+                this.$Message.success('删除成功！');
+                this.getData();
+              }else{
+                this.$Message.error('删除失败！');
+              }
+            })
           },
         },
         mounted:function () {

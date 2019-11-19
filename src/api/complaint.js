@@ -8,3 +8,11 @@ export const page= (data) =>{
     method:'post'
   })
 }
+
+export const deletes= (data) =>{
+  return axios.request({
+    url:'/api/complain/deletes',
+    data:qs.stringify(data),
+    method:'post'
+  })
+}
